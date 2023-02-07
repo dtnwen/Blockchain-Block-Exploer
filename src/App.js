@@ -32,7 +32,6 @@ const App = () => {
     evt.preventDefault()
     let blockInfo = await alchemy.core.getBlockWithTransactions(block ? parseInt(block) : currentBlock && setBlock(currentBlock))
     setBlockInfo(blockInfo)
-    console.log(blockInfo)
     await setTransactions(blockInfo.transactions)
   }
   

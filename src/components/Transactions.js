@@ -1,5 +1,10 @@
+import { useState } from "react";
+import JSONPretty from "react-json-pretty";
+
 export function Transactions(props) {
     const { transactions } = props;
+    const [showMore, setShowMore] = useState(true)
+    
     return (
       <div>
         <b>Transactions count:</b> {transactions && transactions.length}
@@ -8,10 +13,10 @@ export function Transactions(props) {
           transactions.map((tx, i) => {
             return (
               <div key={`tx-${i}`}>
-                <h4>Hash: {tx.hash}</h4>
-                <p>From: {tx.from}</p>
-                <p>To: {tx.to}</p>
-                <br />
+                <h4 onClick={() => setShowMore(!showMore)}>Tx: {tx.hash}</h4>
+                {
+                  showMore ? <JSONPretty data={tx} /> : null
+                }
               </div>
             );
           })}
